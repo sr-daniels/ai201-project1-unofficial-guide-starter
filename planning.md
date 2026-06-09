@@ -19,18 +19,20 @@ I decided to choose roommate/community matching as my domain because I'm persona
 <!-- List your specific sources: URLs, subreddit names, forum threads, or file descriptions.
      Aim for at least 10 sources that together cover different subtopics or perspectives within your domain. -->
 
-| # | Source | Description | URL or location |
-|---|--------|-------------|-----------------|
-| 1 | Roomsurf | NCSU roommate-matching platform used to find potential roommates and housing connections. | https://www.roomsurf.com/north-carolina-state-university-roommates/ |
-| 2 | NCSU Off-Campus Housing Facebook Group | Community where students search for roommates, housing, and roommates with similar lifestyles. | https://www.facebook.com/groups/northcarolinastateuniversityncsuoffcampushousing/ |
-| 3 | NCSU Get Involved | Directory of student organizations, clubs, and campus groups that can help students find like-minded peers. | https://getinvolved.ncsu.edu |
-| 4 | NCSU Subreddit | Student discussions about campus culture, social life, study habits, and making friends. | https://www.reddit.com/r/NCSU/ |
-| 5 | Big Five Personality Test | Source for measuring personality traits that may be used as one input to matching. | https://bigfive-test.com/ |
-| 6 | The Surprising Truth About What Makes Us Like Other People | Article discussing similarity, liking, friendship formation, and perceived understanding. | https://greatergood.berkeley.edu/article/item/the_surprising_truth_about_what_makes_us_like_other_people |
-| 7 | The Science of Making Friends | Article covering friendship development through repeated interaction, reciprocity, trust, and self-disclosure. | https://greatergood.berkeley.edu/article/item/the_science_of_making_friends |
-| 8 | How Long Does It Take to Make a Friend? | Summary of Jeffrey Hall's research on the amount of time required to develop friendships. | https://news.ku.edu/2018/03/29/what-it-takes-make-new-friend |
-| 9 | Why Some Friendships Last and Others Don't | Article about friendship durability, emotional support, reliability, and mutual effort. | https://greatergood.berkeley.edu/article/item/why_some_friendships_last_and_others_dont |
-| 10 | The Friendship Formula | Article based on friendship science covering opportunity, similarity, vulnerability, and responsiveness. | https://www.psychologytoday.com/us/blog/platonic-love/201905/the-friendship-formula |
+
+| # | Source | Type | URL or file path |
+|---|--------|------|-----------------|
+| 1 | NC State CSC student organizations|University department web page (HTML) | https://csc.ncsu.edu/academics/student-organizations/|
+| 2 |NC State MAE student organizations | University department web page (HTML)| https://mae.ncsu.edu/student-organizations/|
+| 3 |NC State CCEE student organizations |University department web page (HTML) | https://ccee.ncsu.edu/student-organizations/|
+| 4 | NC State ISE student organizations|University department web page (HTML) |https://ise.ncsu.edu/current-students/student-organizations/ |
+| 5 | NC State BAE student organizations|University department web page (HTML) | https://bae.ncsu.edu/academics/student-organizations/|
+| 6 |Nature Human Behaviour, neural similarity and friendship |Peer-reviewed journal article |https://www.nature.com/articles/s41562-025-02266-7 |
+| 7 |Frontiers in Psychology, personality homophily and group success | Peer-reviewed journal article| https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.00710/full|
+| 8 | Simply Psychology, the science of adult friendships| Popular-science article| https://www.simplypsychology.com/articles/adult-friendships-research|
+| 9 | APA Monitor, the science of friendship|Professional-association article | https://www.apa.org/monitor/2023/06/cover-story-science-friendship|
+| 10 | Roomsurf, NC State roommate profiles|Roommate-matching site (user profiles) | https://www.roomsurf.com/north-carolina-state-university-roommates/|
+
 
 Others:
 - https://csc.ncsu.edu/academics/student-organizations/
@@ -79,8 +81,6 @@ I'll retrieve the top 5 chunks for each query. Roommate searching demands a coun
 
 
 **Production tradeoff reflection:**
-If this were deployed for real users and cost was not a constraint, I would compare embedding models based on accuracy, context length, latency, and domain fit. A larger model might understand student language, compatibility, and informal Reddit posts better, but it would likely be slower and more expensive. I would also consider multilingual support if the app were used by international students.
-
 If this were deploying to real users I would compare embedding models to see which one offers the best result. I think accuracy is most important for a project like this because the goal is to connect users with people they would actually get along with, so retrieving the most relevant information matters more than having a fast or cheap model. I would also consider how well the model understands student the content we're giving it (especially the content that is coming from social media sites such as Reddit or Facebook).
 
 ---
@@ -97,8 +97,8 @@ If this were deploying to real users I would compare embedding models to see whi
 | 1 | I’m interested in agricultural robotics. What club could help me meet people with that interest? | RoboPack because it builds autonomous robots for agricultural tasks. |
 | 2 | Why would it be harder for a night owl and an early riser to become friends?| There may not be many opportunities for the two to interact because their schedules don't |
 | 3 | Are there any engineering students currently looking for roommates? | Yes multiple roommate listings include students majoring in engineering.|
-| 4 | I’m quiet and like a calm living space. What kind of roommate should I look for? | Someone with compatible social habits, respects quiet time, and has a lifestyle that matches your comfort level. 
-| 5 |  I found a potential roommate who has the same hobbies as me, but they seem way messier than I am. Should I still room with them? | No, living habits like cleanliness and expectations for shared spaces are too important for roommate compatibility.|
+| 4 | Do roommates with similar personalities bond better than those with different ones? | Yes. Research on personality homophily found that similarity in traits like conscientiousness and neuroticism predicted group formation, and that greater personality differences were associated with weaker group bonding. |
+| 5 | My potential roommate and I clicked right away, does that mean we'll actually get along long-term? | Not necessarily. Research suggests lasting friendships are rooted in deeper pre-existing similarities rather than an initial spark and that maintaining a relationship long-term takes ongoing effort. |
 
 
 ---
@@ -123,7 +123,7 @@ If this were deploying to real users I would compare embedding models to see whi
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
 
-     (Image below)
+![Rag piepline](rag-pipeline.png)
 
 ---
 
