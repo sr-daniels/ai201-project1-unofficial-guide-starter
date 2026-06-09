@@ -130,3 +130,11 @@ The implementation diverged in three related ways. First, planning.md described 
 - *What I gave the AI:* My Retrieval Approach section from planning.md (the all-MiniLM-L6-v2 choice and top-k of 5) and the pipeline diagram, and asked it to implement the embedding-and-retrieval stage.
 - *What it produced:* embed_and_retrieve.py, which loads the chunks, embeds them with the local model, stores them in ChromaDB with source and chunk-index metadata under cosine similarity, and exposes a retrieve(query, k=5) function.
 - *What I changed or overrode:* I directed it to remove a hardcoded personal file path and anchor the chunks path to the script's own location instead, and after discovering that an old source (cdep12246.pdf) kept appearing in results, I had it switch the store to delete-and-recreate the collection on each run so stale chunks from previous corpora stop lingering.
+
+  ---
+
+  ## Video
+
+  
+
+
