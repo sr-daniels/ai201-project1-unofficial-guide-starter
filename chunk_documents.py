@@ -160,6 +160,37 @@ def chunk_words(text: str, size: int, overlap: int) -> list[str]:
     return chunks
 
 
+# --- Special-case chunking for Roomsurf profile dumps --------------------
+# Roomsurf pages pack many student profiles into one file. The generic
+# ~450-word chunker would blend several people into a single embedding (which
+# is why an "engineering student" query couldn't find Beta/Gamma/Epsilon), so
+# we split ONE profile per chunk instead. Each profile begins with the
+# object-replacement glyph "\uFFFC" (shows as the box character) followed by
+# the name, e.g. "<glyph> Beta Male - 2030 ...".
+_ROOMSURF_BOILERPLATE = re.compile(
+    r"🔓 Create an Account to see \S+['\u2019]s (?:bio|Social Media handles)"
+)
+
+
+def chunk_roomsurf(text: str) -> list[str]:
+    """Split a Roomsurf dump into one clean chunk per student profile."""
+    # Split on the per-profile marker glyph; drop the empty piece before the
+    # first profile.
+    profiles = [p.strip() for p in text.split("\uFFFC") if p.strip()]
+
+    chunks: list[str] = []
+    for profile in profiles:
+        # Remove the repeated "Create an Account to see ..." prompts. They
+        # appear on every profile, carry no matching signal, and only pull the
+        # embedding toward a generic "Roomsurf page" centroid.
+        cleaned = _ROOMSURF_BOILERPLATE.sub("", profile)
+        # Collapse the whitespace the removals leave behind.
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
+        if cleaned:
+            chunks.append(cleaned)
+    return chunks
+
+
 def load_file_text(path: Path) -> str | None:
     """Read a .txt/.md file directly, or extract text from a .pdf."""
     suffix = path.suffix.lower()
@@ -219,7 +250,12 @@ def main():
         else:
             seen_slugs[slug] = 0
 
-        chunks = chunk_words(cleaned, CHUNK_SIZE, CHUNK_OVERLAP)
+        # Roomsurf profile dumps get one-profile-per-chunk treatment; every
+        # other source uses the generic ~450-word sentence-aware chunker.
+        if "roomsurf" in f.name.lower():
+            chunks = chunk_roomsurf(cleaned)
+        else:
+            chunks = chunk_words(cleaned, CHUNK_SIZE, CHUNK_OVERLAP)
         for i, chunk in enumerate(chunks):
             all_chunks.append({
                 "source": f.name,
