@@ -134,7 +134,6 @@ The implementation diverged in three related ways. First, planning.md described 
   ---
 
   ## Video
-
-  
+https://streamable.com/u926l0)](https://streamable.com/u926l0 (Too big to fit in repo)
 
 
