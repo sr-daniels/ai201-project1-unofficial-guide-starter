@@ -1,10 +1,5 @@
 # The Unofficial Guide — Project 1
 
-> **How to use this template:**
-> Complete each section *after* you've built and tested the corresponding part of your system.
-> Do not write placeholder text — if a section isn't done yet, leave it blank and come back.
-> Every section below is required for submission. One-liners will not receive full credit.
-
 ---
 
 ## Domain
@@ -30,7 +25,7 @@ I decided to choose roommate/community matching as my domain because I'm persona
 | 7 |Frontiers in Psychology, personality homophily and group success | Peer-reviewed journal article| https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.00710/full|
 | 8 | Simply Psychology, the science of adult friendships| Popular-science article| https://www.simplypsychology.com/articles/adult-friendships-research|
 | 9 | APA Monitor, the science of friendship|Professional-association article | https://www.apa.org/monitor/2023/06/cover-story-science-friendship|
-| 10 | Roomsurf, NC State roommate profiles|Roommate-matching site (user profiles) | https://www.roomsurf.com/north-carolina-state-university-roommates/|
+| 10 | Roomsurf, NC State roommate profiles (WITH PID REMOVED)|Roommate-matching site (user profiles) | https://www.roomsurf.com/north-carolina-state-university-roommates/|
 
 ---
 
